@@ -171,12 +171,14 @@ input,
 select,
 textarea{
   width:100%;
+  max-width:100%;
   border:1px solid var(--line);
   background:var(--panel);
   color:var(--text);
   border-radius:14px;
   padding:12px 13px;
   outline:none;
+  box-sizing:border-box;
 }
 
 textarea{
