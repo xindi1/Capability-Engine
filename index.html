@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <meta name="theme-color" content="#dbeafe" />
+  <title>Capability Engine</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="card hero">
+      <div class="eyebrow">Physical Capability System</div>
+      <div class="hero-row">
+        <div>
+          <h1>Capability Engine</h1>
+          <p class="subtitle">
+            Minimum Insight Engine for logging sessions, conditions, and body response.
+          </p>
+        </div>
+        <button id="themeToggle" class="icon-btn" type="button" aria-label="Toggle theme">
+          ☼
+        </button>
+      </div>
+      <div class="hero-note">Fast entry. Local-first. Offline-ready.</div>
+    </header>
+
+    <main class="stack">
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2>Session Entry</h2>
+            <p>Track what you did, under what conditions, and how your body responded.</p>
+          </div>
+          <button id="resetFormBtn" class="ghost-btn" type="button">Reset</button>
+        </div>
+
+        <form id="sessionForm" class="stack form-stack">
+          <div class="grid two">
+            <label class="field">
+              <span>Date</span>
+              <input type="date" id="date" required />
+            </label>
+
+            <label class="field">
+              <span>Mode</span>
+              <select id="mode" required>
+                <option value="Wetland">Wetland</option>
+                <option value="Dryland">Dryland</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="grid two">
+            <label class="field">
+              <span>Activity</span>
+              <select id="activity" required>
+                <option value="">Select activity</option>
+                <option>Swimming</option>
+                <option>Treading</option>
+                <option>Running</option>
+                <option>Walking</option>
+                <option>Resistance Bands</option>
+                <option>Weights</option>
+                <option>Jump Rope</option>
+                <option>Mobility</option>
+                <option>Bodyweight</option>
+                <option>Other</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Function / Purpose</span>
+              <select id="functionPurpose" required>
+                <option value="">Select function</option>
+                <option>Endurance</option>
+                <option>Strength</option>
+                <option>Recovery</option>
+                <option>Resilience</option>
+                <option>Skill</option>
+                <option>Structural Integrity</option>
+                <option>Metabolic Health</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="grid two">
+            <label class="field">
+              <span>Session Type</span>
+              <select id="sessionType" required>
+                <option value="">Select type</option>
+                <option>Recovery</option>
+                <option>Endurance</option>
+                <option>Strength</option>
+                <option>Technique</option>
+                <option>Safety / Resilience</option>
+                <option>Mobility</option>
+                <option>Assessment</option>
+              </select>
+            </label>
+
+            <div class="field">
+              <span>Effort <strong id="effortValue">5</strong></span>
+              <input type="range" min="1" max="10" step="1" value="5" id="effort" />
+              <div class="range-scale">
+                <span>1</span>
+                <span>10</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid three">
+            <label class="field">
+              <span>Duration (min)</span>
+              <input type="number" id="duration" min="0" inputmode="numeric" placeholder="Optional" />
+            </label>
+
+            <label class="field">
+              <span>Distance</span>
+              <input type="text" id="distance" placeholder="Optional" />
+            </label>
+
+            <label class="field">
+              <span>Volume</span>
+              <input type="text" id="volume" placeholder="Optional" />
+            </label>
+          </div>
+
+          <div class="subcard">
+            <div class="subhead">
+              <div>
+                <h3>Pre-Session Variables</h3>
+                <p>Keep it tight.</p>
+              </div>
+            </div>
+
+            <div class="grid two">
+              <div class="field">
+                <span>Green tea / caffeine</span>
+                <div class="segmented" data-group="caffeine">
+                  <button class="seg-btn active" type="button" data-value="Yes">Yes</button>
+                  <button class="seg-btn" type="button" data-value="No">No</button>
+                </div>
+              </div>
+
+              <div class="field">
+                <span>Activation work</span>
+                <div class="segmented" data-group="activation">
+                  <button class="seg-btn active" type="button" data-value="Yes">Yes</button>
+                  <button class="seg-btn" type="button" data-value="No">No</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <span>Time of day</span>
+              <div class="chip-group single-select" id="timeOfDayGroup">
+                <button type="button" class="chip active" data-value="Morning">Morning</button>
+                <button type="button" class="chip" data-value="Midday">Midday</button>
+                <button type="button" class="chip" data-value="Evening">Evening</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="subcard">
+            <div class="subhead">
+              <div>
+                <h3>Post-Session Response</h3>
+                <p>Select what stood out.</p>
+              </div>
+            </div>
+
+            <div class="chip-group multi-select" id="responseGroup">
+              <button type="button" class="chip" data-value="Felt faster">Felt faster</button>
+              <button type="button" class="chip" data-value="Felt slower">Felt slower</button>
+              <button type="button" class="chip" data-value="Smooth">Smooth</button>
+              <button type="button" class="chip" data-value="Strong">Strong</button>
+              <button type="button" class="chip" data-value="Fatigued">Fatigued</button>
+              <button type="button" class="chip" data-value="Good breathing">Good breathing</button>
+              <button type="button" class="chip" data-value="Knee stiff">Knee stiff</button>
+              <button type="button" class="chip" data-value="Joint pain">Joint pain</button>
+              <button type="button" class="chip" data-value="Shoulder loose">Shoulder loose</button>
+              <button type="button" class="chip" data-value="Swelling present">Swelling present</button>
+            </div>
+
+            <label class="field">
+              <span>Notes</span>
+              <textarea id="notes" rows="4" placeholder="Optional notes"></textarea>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="primary-btn" type="submit">Save Session</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2>Swimming Distance Calculator</h2>
+            <p>Simple conversion utility for wetland sessions.</p>
+          </div>
+          <button id="copyDistanceBtn" class="ghost-btn" type="button">Copy to entry</button>
+        </div>
+
+        <div class="grid three">
+          <label class="field">
+            <span>Pool length</span>
+            <input type="number" id="poolLength" min="0" step="0.1" placeholder="e.g. 25" />
+          </label>
+
+          <label class="field">
+            <span>Unit</span>
+            <select id="poolUnit">
+              <option value="yards">yards</option>
+              <option value="meters">meters</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Number of lengths</span>
+            <input type="number" id="poolLengths" min="0" step="1" placeholder="e.g. 40" />
+          </label>
+        </div>
+
+        <div class="calc-output">
+          <div class="metric-card">
+            <div class="metric-label">Total yards</div>
+            <div id="yardsOutput" class="metric-value">0</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-label">Total meters</div>
+            <div id="metersOutput" class="metric-value">0</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2>Filter Bar</h2>
+            <p>Review by variable or response without turning this into a dashboard.</p>
+          </div>
+          <button id="clearFiltersBtn" class="ghost-btn" type="button">Clear</button>
+        </div>
+
+        <div class="grid two">
+          <label class="field">
+            <span>Mode</span>
+            <select id="filterMode">
+              <option value="">All</option>
+              <option>Wetland</option>
+              <option>Dryland</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Activity</span>
+            <select id="filterActivity">
+              <option value="">All</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Green tea / caffeine</span>
+            <select id="filterCaffeine">
+              <option value="">All</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Activation</span>
+            <select id="filterActivation">
+              <option value="">All</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="field">
+          <span>Response tag</span>
+          <select id="filterResponse">
+            <option value="">All</option>
+            <option>Felt faster</option>
+            <option>Felt slower</option>
+            <option>Smooth</option>
+            <option>Strong</option>
+            <option>Fatigued</option>
+            <option>Good breathing</option>
+            <option>Knee stiff</option>
+            <option>Joint pain</option>
+            <option>Shoulder loose</option>
+            <option>Swelling present</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2>Session Log / History</h2>
+            <p>Let structure reveal patterns naturally.</p>
+          </div>
+
+          <div class="inline-actions">
+            <button id="exportJsonBtn" class="ghost-btn" type="button">Export JSON</button>
+            <button id="exportCsvBtn" class="ghost-btn" type="button">Export CSV</button>
+            <label class="ghost-btn file-btn">
+              Import JSON
+              <input id="importJsonInput" type="file" accept=".json,application/json" hidden />
+            </label>
+          </div>
+        </div>
+
+        <div id="historyMeta" class="history-meta">0 sessions</div>
+
+        <div id="sessionLog" class="log-list empty-state">
+          <div class="empty-card">
+            <h3>No sessions yet</h3>
+            <p>Your saved sessions will appear here.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
