@@ -181,6 +181,10 @@ textarea{
   box-sizing:border-box;
 }
 
+input[type="date"]{
+  min-width:0;
+}
+
 textarea{
   resize:vertical;
   min-height:104px;
